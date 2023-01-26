@@ -1,7 +1,7 @@
-require("object")
-require("animation")
+local ObjectC = require("object")
+local AnimationC = require("animation")
 
-PlayerC = {}
+local PlayerC = {}
 PlayerC.__index = PlayerC
 setmetatable(PlayerC, ObjectC)
 

@@ -1,4 +1,4 @@
-AnimationC = {}
+local AnimationC = {}
 AnimationC.__index = AnimationC
 
 -- the animation divides the spritesheet into cells, indexing each from 1

@@ -1,4 +1,4 @@
-ObjectC = {}
+local ObjectC = {}
 ObjectC.__index = ObjectC
 
 function ObjectC.new(x,y,w,h)
@@ -13,3 +13,5 @@ function ObjectC:AABB(x2,y2,w2,h2)
            self.y < y2+h2 and
            y2 < self.y+self.h
 end
+
+return ObjectC

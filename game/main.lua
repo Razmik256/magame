@@ -1,4 +1,9 @@
 PlayerC = require("player")
+CameraC = require("camera")
+ObjectC = require("object")
+Enemy = require("enemy1")
+
+local screenW, screenH = love.graphics.getWidth(), love.graphics.getHeight()
 
 function Make_Level(filename)
     local levelfile = assert(io.open(filename))
@@ -23,11 +28,15 @@ end
 
 function love.load()
     Player = PlayerC.new(64,64,64,64)
-    Make_Level("game/level1")
+    Camera = CameraC.new(Player.x,Player.y)
+    Enemy1 = Enemy.new(256,64,64,64, Player)
+    Make_Level("level1")
 end
 
 function love.update(dt)
     Player:move(dt)
+    Camera:move_to(Player.x-screenW/2+Player.w/2,Player.y-screenH/2+Player.h/2)
+    Enemy:move(dt)
 end
 
 function love.keypressed(key)
@@ -60,6 +69,7 @@ function DebugDraw(obj)
 end
 
 function love.draw()
+    love.graphics.translate(-Camera.x, -Camera.y)
     love.graphics.setColor(1,1,1)
     love.graphics.draw(Player.anim.sprite,Player.anim.drawQ, Player.x,Player.y, 0, Player.anim.sx, Player.anim.sy,Player.anim.offx, Player.anim.offy)
     DebugDraw(Player)
